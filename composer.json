@@ -1,0 +1,47 @@
+{
+    "name": "garethdaine/google-places",
+    "description": "A Laravel package to interact with the Google Places API.",
+    "require": {
+        "illuminate/support": "^10.0",
+        "guzzlehttp/guzzle": "^7.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "GarethDaine\\GooglePlaces\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "GarethDaine\\GooglePlaces\\Tests\\": "tests"
+        }
+    },
+    "suggest": {
+        "guzzlehttp/guzzle": "Required to use the Guzzle HTTP client (^7.0.1)."
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "GarethDaine\\GooglePlaces\\GooglePlacesServiceProvider"
+            ],
+            "aliases": {
+                "GooglePlaces": "GarethDaine\\GooglePlaces\\Facades\\GooglePlacesFacade"
+            }
+        }
+    },
+    "authors": [
+        {
+            "name": "Gareth Daine",
+            "email": "gareth@acadia.ai"
+        }
+    ],
+    "require-dev": {
+        "phpstan/phpstan": "^1.9",
+        "pestphp/pest": "^1.22",
+        "orchestra/testbench": "^8.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
