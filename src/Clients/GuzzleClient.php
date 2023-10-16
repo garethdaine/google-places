@@ -61,21 +61,25 @@ class GuzzleClient extends Client
      * Perform a GET request to the Google Places 'nearbysearch' endpoint and return a JSON response.
      *
      * @param  array  $location The location latitude and longitude coordinates.
-     * @param  string $type     The type to use for the query.
+     * @param  string|null $type     The type to use for the query.
      * @param  int    $radius   The radius in meters.
      * @param  string $rankBy   The rankby parameter.
      * @return array            The results array listing all places for the specific location/radius/type.
      */
-    public function nearbySearch(array $location, string $type, int $radius = 0, string $rankBy = 'distance'): array
+    public function nearbySearch(array $location, string $type = null, int $radius = 0, string $rankBy = 'distance'): array
     {
         // Add the location coordinates, radius, and type to the query string parameters.
         $options = [
             'query' => [
                 'location' => strval($location['latitude']).','.strval($location['longitude']),
-                'type' => $type,
+
                 'rankby' => $rankBy,
             ]
         ];
+
+        if ($type !== null) {
+            $options['query']['type'] = $type;
+        }
 
         if ($radius > 0 && $rankBy !== 'distance') {
             $options['query']['radius'] = $radius;
