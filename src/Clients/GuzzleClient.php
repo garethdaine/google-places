@@ -39,6 +39,25 @@ class GuzzleClient extends Client
     }
 
     /**
+     * Perform a GET request to the Google Places 'textsearch' endpoint and return a JSON response.
+     *
+     * @param  string $query The query string.
+     * @return array         The results array listing all places for the specific query.
+     */
+    public function textSearch(string $query): array
+    {
+        // Add the query string to the query string parameters.
+        $options = [
+            'query' => [
+                'query' => $query,
+            ]
+        ];
+
+        // Make the request and return the results array.
+        return $this->request('GET', 'textsearch', 'json', $options);
+    }
+
+    /**
      * Perform a GET request to the Google Places details endpoint and return the result.
      *
      * @param  string $placeId A Google Place ID.
